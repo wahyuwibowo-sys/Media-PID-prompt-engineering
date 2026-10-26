@@ -1,0 +1,6 @@
+{
+  "name": "RTCL Prompt Generator",
+  "description": "Generator prompt AI profesional berbasis metode RTCL (Role, Task, Context, Limitations) dengan template edukasi, manajemen sekolah, marketing, dan pemrograman.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
