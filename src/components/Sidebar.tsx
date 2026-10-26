@@ -111,46 +111,54 @@ export function Sidebar({
           isCollapsed ? 'lg:w-20' : 'lg:w-72'
         } w-72 shadow-xl lg:shadow-none`}
       >
-        {/* Sidebar Header with 3-line hamburger toggle */}
-        <div className="h-16 px-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
-          {!isCollapsed && (
-            <div className="flex items-center gap-2.5 overflow-hidden">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 text-white flex items-center justify-center font-black text-base shadow-md shadow-blue-500/25 shrink-0">
-                <Sparkles className="w-5 h-5 text-amber-300" />
+        {/* Sidebar Header with tidy responsive branding and toggle */}
+        <div className="h-16 px-3 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+          {!isCollapsed ? (
+            <>
+              <div className="flex items-center gap-2.5 overflow-hidden">
+                <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 text-white flex items-center justify-center font-black text-base shadow-md shadow-blue-500/25 shrink-0">
+                  <Sparkles className="w-5 h-5 text-amber-300" />
+                </div>
+                <div className="truncate">
+                  <h1 className="text-sm font-black text-slate-900 dark:text-slate-100 tracking-tight truncate">
+                    RTCL Prompt Edu
+                  </h1>
+                  <p className="text-[11px] font-medium text-slate-500 dark:text-slate-400 truncate">
+                    SMKN 1 Sidayu
+                  </p>
+                </div>
               </div>
-              <div className="truncate">
-                <h1 className="text-sm font-black text-slate-900 dark:text-slate-100 tracking-tight truncate">
-                  RTCL Prompt Edu
-                </h1>
-                <p className="text-[11px] font-medium text-slate-500 dark:text-slate-400 truncate">
-                  SMKN 1 Sidayu
-                </p>
-              </div>
-            </div>
-          )}
 
-          {isCollapsed && (
+              {/* Minimize Sidebar Button (Desktop) */}
+              <button
+                onClick={onToggleCollapse}
+                aria-label="Minimkan Sidebar (≡)"
+                title="Minimkan Sidebar (≡)"
+                className="hidden lg:flex items-center justify-center p-2 rounded-xl text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+            </>
+          ) : (
+            /* Single centered brand button when collapsed (clicks to expand) */
             <div className="w-full flex justify-center">
-              <div className="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center font-black text-sm shadow-md">
-                <Sparkles className="w-5 h-5 text-amber-300" />
-              </div>
+              <button
+                onClick={onToggleCollapse}
+                aria-label="Perbesar Sidebar (≡)"
+                title="Buka / Perbesar Sidebar (≡)"
+                className="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 text-white flex items-center justify-center shadow-md shadow-blue-500/25 hover:shadow-lg hover:scale-105 active:scale-95 transition-all cursor-pointer group"
+              >
+                <Sparkles className="w-5 h-5 text-amber-300 group-hover:rotate-12 transition-transform" />
+              </button>
             </div>
           )}
 
-          {/* Toggle Button: 3 Parallel Lines (≡) */}
-          <button
-            onClick={onToggleCollapse}
-            aria-label={isCollapsed ? "Perbesar Sidebar" : "Perkecil Sidebar"}
-            title={isCollapsed ? "Buka Sidebar (≡)" : "Minimkan Sidebar (≡)"}
-            className="hidden lg:flex items-center justify-center p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-          >
-            {isCollapsed ? <Menu className="w-5 h-5" /> : <ChevronLeft className="w-5 h-5" />}
-          </button>
-
-          {/* Close Button on Mobile */}
+          {/* Close Button on Mobile Drawer */}
           <button
             onClick={onCloseMobile}
-            className="lg:hidden p-2 rounded-xl text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800"
+            aria-label="Tutup Menu"
+            title="Tutup Menu"
+            className="lg:hidden p-2 rounded-xl text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>

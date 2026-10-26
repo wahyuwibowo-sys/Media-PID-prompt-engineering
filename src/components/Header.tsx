@@ -57,23 +57,73 @@ export function Header({
     }
   };
 
+  const getSectionBadge = () => {
+    switch (activeView) {
+      case 'pendahuluan':
+        return { 
+          icon: BookOpen, 
+          gradient: 'from-blue-600 to-indigo-600', 
+          iconColor: 'text-white' 
+        };
+      case 'ice-breaking':
+        return { 
+          icon: Sparkles, 
+          gradient: 'from-amber-500 to-orange-500', 
+          iconColor: 'text-amber-100' 
+        };
+      case 'asesmen-awal':
+        return { 
+          icon: HelpCircle, 
+          gradient: 'from-purple-600 to-indigo-600', 
+          iconColor: 'text-purple-100' 
+        };
+      case 'arena':
+        return { 
+          icon: Trophy, 
+          gradient: 'from-emerald-600 to-teal-600', 
+          iconColor: 'text-emerald-100' 
+        };
+      case 'lkpd':
+        return { 
+          icon: FileEdit, 
+          gradient: 'from-sky-600 to-blue-600', 
+          iconColor: 'text-sky-100' 
+        };
+      case 'rekap-nilai':
+        return { 
+          icon: FileSpreadsheet, 
+          gradient: 'from-indigo-600 to-violet-600', 
+          iconColor: 'text-indigo-100' 
+        };
+      default:
+        return { 
+          icon: Sparkles, 
+          gradient: 'from-blue-600 to-indigo-600', 
+          iconColor: 'text-amber-300' 
+        };
+    }
+  };
+
+  const badge = getSectionBadge();
+  const SectionIcon = badge.icon;
+
   return (
     <header className="sticky top-0 z-30 w-full border-b backdrop-blur-md bg-white/95 dark:bg-slate-900/95 border-slate-200 dark:border-slate-800 transition-colors">
       <div className="w-full px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
-        {/* Left: 3-Parallel Lines Hamburger Button + Active Title */}
+        {/* Left: 3-Parallel Lines Hamburger Button + Active Section Title */}
         <div className="flex items-center gap-3">
           <button
             onClick={onToggleSidebar}
             aria-label="Toggle Sidebar Menu (Garis 3 Sejajar)"
             title="Buka / Minimkan Menu Navigasi (≡)"
-            className="p-2.5 rounded-2xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-100 transition-colors shadow-2xs flex items-center justify-center cursor-pointer"
+            className="p-2.5 rounded-2xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-100 transition-all shadow-2xs flex items-center justify-center cursor-pointer active:scale-95"
           >
             <Menu className="w-5 h-5 stroke-[2.5]" />
           </button>
 
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white shadow-xs hidden sm:flex">
-              <Sparkles className="w-4 h-4 text-amber-300" />
+            <div className={`w-8 h-8 rounded-xl bg-gradient-to-tr ${badge.gradient} flex items-center justify-center text-white shadow-xs hidden sm:flex shrink-0`}>
+              <SectionIcon className={`w-4 h-4 ${badge.iconColor}`} />
             </div>
             <div>
               <div className="flex items-center gap-2">
