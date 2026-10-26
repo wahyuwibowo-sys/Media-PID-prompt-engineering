@@ -22,9 +22,23 @@ export interface StudentScoreRecord {
   jurusan: JurusanSMK;
   topicTitle: string;
   promptData: RTCLForm;
+  compiledPrompt?: string; // Teks lengkap prompt RTCL yang dihasilkan
+  aiResponse?: string;     // Hasil respons AI generatif yang diperoleh murid
   auditScore: RTCLAuditScore;
   timeSpentSeconds: number;
   timestamp: number;
   teacherNotes?: string;
   manualBonus?: number;
+}
+
+export interface AssessmentQuestion {
+  id: number;
+  question: string;
+  options: {
+    key: string;
+    text: string;
+    isCorrect: boolean;
+  }[];
+  explanation: string;
+  targetConcept: 'Role' | 'Task' | 'Context' | 'Limitations' | 'Halusinasi AI';
 }
